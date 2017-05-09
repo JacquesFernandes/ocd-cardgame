@@ -1,10 +1,22 @@
 <html>
-    <script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/game.js"></script>
     <script type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function()
         {
-            $("#greeting").html("Current user: "+sessionStorage.getItem("username"));
+            var user_data = JSON.parse(sessionStorage.getItem("user_data"));
+
+            /*console.log("USER DATA: "+JSON.stringify(user_data));
+            console.log("main_stack: "+user_data.main_stack);
+            sessionStorage.setItem("main_stack", JSON.stringify(user_data.main_stack)); // sessionStorage.main_stack -> String
+            sessionStorage.setItem("spade_stack", JSON.stringify(user_data.spade_stack)); // sessionStorage.spade_stack -> String
+            sessionStorage.setItem("heart_stack", JSON.stringify(user_data.heart_stack)); // sessionStorage.heart_stack -> String
+            sessionStorage.setItem("club_stack", JSON.stringify(user_data.club_stack)); // sessionStorage.club_stack -> String
+            sessionStorage.setItem("diamond_stack", JSON.stringify(user_data.diamond_stack)); // sessionStorage.diamond_stack -> String
+            */
+            $("#greeting").html("Current user: "+user_data.username);
+            setMainStackTop();
+            //console.log(user_data);
         });
     </script>
     <head>
@@ -20,34 +32,48 @@
             </tr>
             <tr height="55%">
                 <td colspan="4">
-                    <div id="card_stack" align="center">
-                        cards
-                    </div>
-                    <!-- To be used for scattered cards...
+                    <table align="center">
+                        <tr>
+                            <td id="card_suit">
+                                Card Suit
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="card_image">
+                                Suit Image
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="card_value">
+                                Card Value
+                            </td>
+                        </tr>
+                    </table>
+                    <!-- To be used for "scattered" cards...
                          <div id="cards" style="margin: 0 auto; width: 100%; max-height: 95%; overflow: scroll;">
 
                     </div>-->
                 </td>
             </tr>
             <tr height="35%">
-                <td width="25%">
-                    <div id="spade_stack" align="center">
-                        Spades
+                <td width="25%" onclick="checkCard('Spades')">
+                    <div id="Spades_stack" align="center">
+                        Spades: 
                     </div>
                 </td>
-                <td width="25%">
-                    <div id="hearts_stack" align="center">
-                        Hearts
+                <td width="25%" onclick="checkCard('Hearts')">
+                    <div id="Hearts_stack" align="center">
+                        Hearts: 
                     </div>
                 </td>
-                <td width="25%">
-                    <div id="clubs_stack" align="center">
-                        Clubs
+                <td width="25%" onclick="checkCard('Clubs')">
+                    <div id="Clubs_stack" align="center">
+                        Clubs: 
                     </div>
                 </td>
-                <td width="25%">
-                    <div id="diamonds_stack" align="center">
-                        Diamonds
+                <td width="25%" onclick="checkCard('Diamonds')">
+                    <div id="Diamonds_stack" align="center">
+                        Diamonds: 
                     </div>
                 </td>
             </tr>

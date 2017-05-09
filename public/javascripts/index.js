@@ -20,7 +20,14 @@ function loginApp()
             else
             {
                 alert(res.message);
-                sessionStorage.setItem("username",uname);
+                console.log(res);
+                var user_data = JSON.parse(sessionStorage.user_data);
+                console.log(user_data);
+                sessionStorage.setItem("main_stack", user_data.main_stack); // sessionStorage.main_stack -> String
+                sessionStorage.setItem("spade_stack", user_data.spade_stack); // sessionStorage.spade_stack -> String
+                sessionStorage.setItem("heart_stack", user_data.heart_stack); // sessionStorage.heart_stack -> String
+                sessionStorage.setItem("club_stack", user_data.club_stack); // sessionStorage.club_stack -> String
+                sessionStorage.setItem("diamond_stack", user_data.diamond_stack); // sessionStorage.diamond_stack -> String
                 document.location = "game.html";
                 return;
             }
