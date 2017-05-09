@@ -149,3 +149,17 @@ function logout()
         }
     });
 }
+
+function loadStacks()
+{
+    var spade_stack = sessionStorage.spade_stack;
+    var heart_stack = sessionStorage.heart_stack;
+    var club_stack = sessionStorage.club_stack;
+    var diamond_stack = sessionStorage.diamond_stack;
+
+    $("#Spades_stack")[0].innerHTML = "Spades: "+spade_stack.trim();
+    $("#Hearts_stack")[0].innerHTML = "Hearts: "+heart_stack.trim();
+    $("#Clubs_stack")[0].innerHTML = "Clubs: "+club_stack.trim();
+    $("#Diamonds_stack")[0].innerHTML = "Diamonds: "+diamond_stack.trim(); 
+    return;
+}
