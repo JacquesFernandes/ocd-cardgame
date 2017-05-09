@@ -1,0 +1,56 @@
+<html>
+    <script type="text/javascript" src="/javascripts/index.js"></script>
+    <script type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+            $("#greeting").html("Current user: "+sessionStorage.getItem("username"));
+        });
+    </script>
+    <head>
+        <title>SortIt!</title>
+    </head>
+    <body>
+        <table height="100%" width="100%" border=1>
+            <tr height="10%">
+                <td id="greeting" width="30%">Placeholder</td>
+                <td width="70%" align="right" colspan="3">
+                    <button onclick="logout()" align="right">Logout</button>
+                </td>
+            </tr>
+            <tr height="55%">
+                <td colspan="4">
+                    <div id="card_stack" align="center">
+                        cards
+                    </div>
+                    <!-- To be used for scattered cards...
+                         <div id="cards" style="margin: 0 auto; width: 100%; max-height: 95%; overflow: scroll;">
+
+                    </div>-->
+                </td>
+            </tr>
+            <tr height="35%">
+                <td width="25%">
+                    <div id="spade_stack" align="center">
+                        Spades
+                    </div>
+                </td>
+                <td width="25%">
+                    <div id="hearts_stack" align="center">
+                        Hearts
+                    </div>
+                </td>
+                <td width="25%">
+                    <div id="clubs_stack" align="center">
+                        Clubs
+                    </div>
+                </td>
+                <td width="25%">
+                    <div id="diamonds_stack" align="center">
+                        Diamonds
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </body>
+</html>

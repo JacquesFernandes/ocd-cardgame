@@ -6,4 +6,9 @@ router.get('/', function(req, res, next) {
   res.status(200).render('index.html');
 });
 
+router.get("/game.html",function(req,res)
+{
+  res.status(200).render("game.html");
+});
+
 module.exports = router;

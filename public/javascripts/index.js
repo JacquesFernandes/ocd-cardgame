@@ -20,6 +20,7 @@ function loginApp()
             else
             {
                 alert(res.message);
+                sessionStorage.setItem("username",uname);
                 document.location = "game.html";
                 return;
             }
