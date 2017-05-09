@@ -43,7 +43,13 @@ router.post("/login",function(req,res)
                 });
                 response.status = "success";
                 response.message = "New user "+username+" added...";
-                response.heaps = generateHeaps();
+                response.heaps = JSON.stringify({
+                    main_stack: new_user.main_stack,
+                    spade_stack: new_user.spade_stack,
+                    heart_stack: new_user.heart_stack,
+                    club_stack: new_user.club_stack,
+                    diamond_stack: new_user.diamond_stack
+                });
                 res.status(200).send(JSON.stringify(response));
                 return;
             }
@@ -73,7 +79,7 @@ function makeNewUser(username)
         diamond_stack: "",
         main_stack: generateMainStack()
     };
-
+    return(data);
 }
 
 function generateMainStack()
@@ -83,30 +89,33 @@ function generateMainStack()
     var clubs = ["c1","c2","c3","c4","c5","c6","c7","c8","c9","c10","cK","cQ","cJ"];
     var diamonds = ["d1","d2","d3","d4","d5","d6","d7","d8","d9","d10","dK","dQ","dJ"];
 
-    var main_stack = [];
+    var main_stack = []; // total of 52
 
-    while (length(spades) > 0 || length(hearts) > 0 || length(clubs) > 0 || length(clubs) > 0)
+    while (spades.length > 0 || hearts.length > 0 || clubs.length > 0 || clubs.length > 0)
     {
         suit = Math.floor(Math.random() * 4) + 1;
-        if (suit == 1)
+        if (suit == 1 && spades.length > 0)
         {
-            var index = Math.floor(Math.random()*length(spades))
-            card = spades.splice(index,1);
+            var index = Math.floor(Math.random()*spades.length)
+            main_stack.push(spades.splice(index,1));
         }
-        else if (suit == 2)
+        else if (suit == 2 && hearts.length > 0)
         {
-            var index = Math.floor(Math.random()*length(spades))
-            card = hearts.splice(index,1);
+            var index = Math.floor(Math.random()*hearts.length)
+            main_stack.push(hearts.splice(index,1));
         }
-        else if (suit == 3)
+        else if (suit == 3 && clubs.length > 0)
         {
-            var index = Math.floor(Math.random()*length(spades))
-            card = clubs.splice(index,1);
+            var index = Math.floor(Math.random()*clubs.length)
+            main_stack.push(clubs.splice(index,1));
         }
-        else if (suit == 4)
+        else if (suit == 4 && diamonds.length > 0)
         {
-            var index = Math.floor(Math.random()*length(spades))
-            card = diamonds.splice(index,1);
+            var index = Math.floor(Math.random()*diamonds.length)
+            main_stack.push(diamonds.splice(index,1));
         }
     }
+    main_stack = JSON.stringify(main_stack);
+    console.log(main_stack);
+    return(main_stack);
 }
