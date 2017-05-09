@@ -3,18 +3,16 @@
     <script type="text/javascript" src="/javascripts/jquery-3.2.0.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function()
-        {
-            var user_data = JSON.parse(sessionStorage.getItem("user_data"));
-
-            /*console.log("USER DATA: "+JSON.stringify(user_data));
-            console.log("main_stack: "+user_data.main_stack);
+        {   
+            console.log("USER DATA: "+JSON.stringify(sessionStorage));
+            /*console.log("main_stack: "+user_data.main_stack);
             sessionStorage.setItem("main_stack", JSON.stringify(user_data.main_stack)); // sessionStorage.main_stack -> String
             sessionStorage.setItem("spade_stack", JSON.stringify(user_data.spade_stack)); // sessionStorage.spade_stack -> String
             sessionStorage.setItem("heart_stack", JSON.stringify(user_data.heart_stack)); // sessionStorage.heart_stack -> String
             sessionStorage.setItem("club_stack", JSON.stringify(user_data.club_stack)); // sessionStorage.club_stack -> String
             sessionStorage.setItem("diamond_stack", JSON.stringify(user_data.diamond_stack)); // sessionStorage.diamond_stack -> String
             */
-            $("#greeting").html("Current user: "+user_data.username);
+            $("#greeting").html("Current user: "+sessionStorage.username);
             setMainStackTop();
             //console.log(user_data);
         });

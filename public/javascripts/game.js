@@ -93,3 +93,59 @@ function checkCard(suit)
         }
     }
 }
+
+function logout()
+{
+    var main_stack = sessionStorage.main_stack;
+    var spade_stack = "";
+    var heart_stack = "";
+    var club_stack = "";
+    var diamond_stack = "";
+    var data = "";
+
+    // Spades
+    data = $("#Spades_stack")[0].innerHTML.trim();
+    numbers = data.split(" ").splice(1);
+    spade_stack = numbers.join(" ").trim();
+
+    // Hearts
+    data = $("#Hearts_stack")[0].innerHTML.trim();
+    numbers = data.split(" ").splice(1);
+    heart_stack = numbers.join(" ").trim();
+
+    // Clubs
+    data = $("#Clubs_stack")[0].innerHTML.trim();
+    numbers = data.split(" ").splice(1);
+    club_stack = numbers.join(" ").trim();
+
+    // Diamonds
+    data = $("#Diamonds_stack")[0].innerHTML.trim();
+    numbers = data.split(" ").splice(1);
+    diamond_stack = numbers.join(" ").trim();
+
+    data = {
+        username: sessionStorage.username,
+        progress: true,
+        spade_stack: spade_stack, 
+        heart_stack: heart_stack,
+        club_stack: club_stack,
+        diamond_stack: diamond_stack,
+        main_stack: main_stack
+    }
+
+    $.post("/api/saveGame",data, function(res)
+    {
+        console.log(res);
+        //res = JSON.parse(res);
+
+        if (res.status == "error")
+        {
+            alert(res.message);
+        }
+        else
+        {
+            document.location = "/";
+            //sessionStorage = null; // "reset" the session
+        }
+    });
+}

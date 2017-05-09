@@ -59,7 +59,15 @@ router.post("/login",function(req,res)
             {
                 response.status = "success";
                 response.message = "Welcome back "+username+"...";
-                response.heaps = fetchHeaps();
+                response.user_data = JSON.stringify({
+                    username: username,
+                    progress: 0,
+                    main_stack: user.main_stack,
+                    spade_stack: user.spade_stack,
+                    heart_stack: user.heart_stack,
+                    club_stack: user.club_stack,
+                    diamond_stack: user.diamond_stack
+                });
                 res.status(200).send(JSON.stringify(response));
                 return;  
             }
@@ -76,6 +84,46 @@ router.post("/fetchNewStack",function(req,res)
     };
 
     res.status(200).send(JSON.stringify(response));
+});
+
+router.post("/saveGame",function(req,res)
+{
+    var data = req.body;
+    var username = data.username;
+    console.log("saving for: "+username);
+    var user_schema = schemas.userSchema;
+    var UserModel = mongoose.model("users", user_schema);
+
+    UserModel.findOne({username:username},function(error, user)
+    {
+        if (error || user == null)
+        {
+            console.log("lolwut");
+            console.log(error); // if null, means that no player was found
+        }
+        user.spade_stack = data.spade_stack;
+        user.heart_stack = data.heart_stack;
+        user.club_stack = data.club_stack;
+        user.diamond_stack = data.diamond_stack;
+        user.main_stack = data.main_stack
+        user.save(function(error,docs,num_affected)
+        {
+            if (error)
+            {
+                console.log(error);
+            }
+            else if (num_affected == 1)
+            {
+                console.log("Successfully saved!");
+            }
+        });
+
+        response = {
+            status: "success",
+            message: "saved player state!"
+        }
+        res.status(200).send(JSON.stringify(response));
+    });
 });
 
 module.exports = router;
