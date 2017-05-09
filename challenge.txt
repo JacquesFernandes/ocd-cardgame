@@ -1,0 +1,29 @@
+    Deck of Cards: a web app for people with OCD.
+
+    A User logs into the app. On the page, you display the 52 cards in a standard playing cards deck ‘scattered’ on the screen. 
+
+    At the bottom of the screen, have four ‘card holders’ - each labeled after a house of cards - spade, diamond, clubs, hearts. 
+
+    The user can ‘clean up’ the space by dragging a card and dropping it into the right card holder. 
+
+    Notes:
+
+       - You can only place a card in the correct cardholder. Spades in spades, hearts in hearts, etc.
+
+       - If all cards are put into the right cardholder, show a “restart” button. If clicked, the cards should be again shuffled in the space above.
+
+       - If user logs out, save the progress they made. On second login, game should start from where they left off.
+
+       - Don’t worry about UI design too much - for the cards, just make simple divs with card type and number on it.
+
+       - You can use any library you want for drag and drop.
+
+       - As far as possible, use MERN stack. If you feel really strongly that you are not comfortable with any part of this stack, you may choose to switch to another technology.
+
+       - Submit your code with: 
+
+        A git repository.
+        A readme file with instructions on how to use the app.
+
+
+    Your work will be judged on functionality, quality (including efficiency, organization and readability) and flair.

@@ -1,0 +1,1 @@
+Contains all the formats for the api calls. If empty, then there wasn't enough time :P
